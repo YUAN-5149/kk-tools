@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 之後新增工具時在這裡加更多 match 區塊
+    // 範例（白名單做法）：
+    // match /wordcloud_words/{document} {
+    //   // 測試用公開：只適合課堂 demo，不可用在正式或長期公開服務
+    //   allow read, write: if true;
+    // }
+
+    // 其他集合預設禁止存取（白名單）
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
